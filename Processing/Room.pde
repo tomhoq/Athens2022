@@ -20,8 +20,12 @@ public class Room {
     return (float) ((_occupation/_maxOccupation) *100);
   } 
   
+  public int getMaxOccupation(){
+    return _maxOccupation;
+  }
+  
   public void setMaxOccupation(int o) {
-    _maxOccupation = m;
+    _maxOccupation = o;
   }
   
   public void setName(String n) {
@@ -36,8 +40,6 @@ public class Room {
       return RED;
     return YELLOW;
   }
-  
-  public 
   
   public void addEntry(){
     _occupation += 1;
