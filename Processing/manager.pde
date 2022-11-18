@@ -55,13 +55,12 @@ void setup(){
   fill(0);
   textSize(textSize);
   frameRate(30);
-  
-  port = new Serial(this, Serial.list()[0], 9600);
+  port = new Serial(this, Serial.list()[1], 115200);
   //ROOMS
   rooms.add(new Room("102.1",10));
-  for(int i = 1; i<13; i++){ 
+  /*for(int i = 1; i<13; i++){ 
     rooms.add(new Room("aaaa"+i,i*2));
-  }  
+  }  */
   windowHeight = rectHeight*rooms.size() +
   textVerticalDistance*(rooms.size()-1);
 
@@ -77,17 +76,20 @@ void draw(){
     textVerticalDistance*(rooms.size()-1);
   }
   drawButtons();
+  //does the sliding
   if (windowHeight > height){ 
     translate(0, newY);
     println(newY + " " + -windowHeight);
-    if (newY < -windowHeight + height){
+    if (newY < -windowHeight + height){ // IF REACHES END
       delay(1000);
       newY = 100;
     }
     newY-=velocity;
   }
   drawRooms();
-
+  
+  
+  //reads data from server
   String line = port.readString(); //SERIAL TEXT SHOULD BE SENT IN THE FORMAT: "roomName,Mov",
                                                //where Mov is either 1 or 0, in or out
   
@@ -108,13 +110,10 @@ void draw(){
          println("EXCEPTION: FORMAT ERROR");
          break;
     };
-    port.write(activeRoom.getOccupationPercentage() + "," + 
-    activeRoom.getOccupation());
   }
-
-
 }
 
+//draw roooms---------------------------------------------------
 public void drawRooms(){
    if (rooms.size() !=0){
      pushMatrix();
@@ -158,6 +157,7 @@ public Room findRoom(String r){
   return new Room("ERROR", -1); //SHOULDNT HAPPEN
 }
 
+//Buttons---------------------------------------------------
 public void mousePressed(){
   if (but1Over){
     sortRoomsName();
@@ -236,6 +236,7 @@ public void drawButtons(){
   -textXAlign, but2Y +30);
 }
 
+//sorters---------------------------------------------------
 public void sortRoomsName(){
     Collections.sort(rooms,new Comparator<Room>(){
     @Override

@@ -1,5 +1,5 @@
 public class Room {
-  private int _occupation = 3;
+  private int _occupation = 0;
   private int _maxOccupation;
   private String _roomName;
 
@@ -53,7 +53,8 @@ public class Room {
   }
   
   public void removeEntry(){
-    _occupation -= 1;
+    if (_occupation != 0)
+      _occupation -= 1;
   }
   
   @Override
