@@ -1,12 +1,19 @@
 public class Room {
-  private int _occupation = 0;
+  private int _occupation = 3;
   private int _maxOccupation;
   private String _roomName;
 
-  public Room(String roomName, int maxOccupation) {
+    public Room(String roomName, int maxOccupation) {
     _maxOccupation = maxOccupation;
     _roomName = roomName;
   }
+  
+  public Room(String roomName, int maxOccupation, int Occ) {
+    _maxOccupation = maxOccupation;
+    _roomName = roomName;
+    _occupation = Occ;
+  }
+
 
   public String getName() {
     return _roomName;
@@ -17,7 +24,7 @@ public class Room {
   }
   
   public float getOccupationPercentage(){
-    return (float) ((_occupation/_maxOccupation) *100);
+    return (float) (float)(_occupation)/(float)(_maxOccupation);
   } 
   
   public int getMaxOccupation(){
@@ -33,10 +40,10 @@ public class Room {
   }
    
   public int occupationType() {
-    float percentage = (float) ((_occupation/_maxOccupation) *100);
-    if (percentage < 0.25) {
+    float percentage = getOccupationPercentage();
+    if (percentage < G2Y) {
       return GREEN;
-    } else if (percentage > 0.75)
+    } else if (percentage >Y2R)
       return RED;
     return YELLOW;
   }
@@ -47,5 +54,10 @@ public class Room {
   
   public void removeEntry(){
     _occupation -= 1;
+  }
+  
+  @Override
+  public String toString(){
+    return "ClassRoom " + _roomName;
   }
 }
