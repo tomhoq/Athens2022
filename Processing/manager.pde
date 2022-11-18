@@ -58,9 +58,10 @@ void setup(){
   port = new Serial(this, Serial.list()[1], 115200);
   //ROOMS
   rooms.add(new Room("102.1",10));
-  /*for(int i = 1; i<13; i++){ 
-    rooms.add(new Room("aaaa"+i,i*2));
-  }  */
+  //ROOM GENERATOR FOR TESTING, CHANGE i TO SEE SLIDING
+  for(int i = 1; i<13; i++){ 
+    rooms.add(new Room("test"+i,i*2));
+  }  
   windowHeight = rectHeight*rooms.size() +
   textVerticalDistance*(rooms.size()-1);
 
