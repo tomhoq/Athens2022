@@ -3,6 +3,7 @@
 Code for ESP32 client and server and Processing interface that display data.
 
 #Problem
+
 With this project we came up with a solution for a long known problem present on our university: lack of studying spaces.
 
 By using sensors on an Arduino board, connected wirelessly to a server, anyone is able to access, online, the occupancy of each studying room to 
